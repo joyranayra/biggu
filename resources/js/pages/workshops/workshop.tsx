@@ -812,7 +812,7 @@ export default function WorkshopsPage() {
                       </div>
                       <div className="flex items-center gap-3">
                         <Users className="w-4 h-4 text-primary" />
-                        <span>{selectedWorkshop.spots_left} dari {selectedWorkshop.spots_left} spot tersedia</span>
+                        <span>{selectedWorkshop.spots_left} dari {selectedWorkshop.spots_left} spot</span>
                       </div>
                     </div>
 
