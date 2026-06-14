@@ -578,7 +578,11 @@ export default function ProductsPage() {
                   {filteredProducts.map((product) => (
                       <Card 
                         className="group cursor-pointer border-2 border-transparent hover:border-primary/30 rounded-3xl overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 bg-card h-full"
-                        onClick={() => setSelectedProduct(product)}
+                        onClick={() => {
+                          if (product.stock > 0) {
+                            setSelectedProduct(product);
+                          }
+                        }}
                       >
                         <CardContent className="p-0">
                           <div className={`relative overflow-hidden bg-secondary ${
