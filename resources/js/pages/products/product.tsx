@@ -589,12 +589,12 @@ export default function ProductsPage() {
                               alt={product.name}
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
-                            {!product.in_stock && (
+                            {product.stock === 0 && (
                               <div className="absolute inset-0 bg-background/70 flex items-center justify-center">
-                                <Badge className="bg-muted text-muted-foreground text-sm">Out of Stock</Badge>
+                                <Badge className="bg-muted text-muted-foreground text-sm">Stock Habis</Badge>
                               </div>
                             )}
-                            {product.badge && product.in_stock && (
+                            {product.badge && product.stock === 0 && (
                               <Badge className="absolute top-3 left-3 bg-accent text-accent-foreground font-bold rounded-full px-3">
                                 {product.badge}
                               </Badge>

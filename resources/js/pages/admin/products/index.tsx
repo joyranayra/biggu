@@ -66,8 +66,13 @@ export default function ProductPage() {
     formData.append('badge', form.badge || '')
     formData.append('rating', form.rating)
     formData.append('reviews', form.reviews)
-    formData.append('in_stock', form.in_stock ? '1' : '0')
-     formData.append('stock', form.stock)
+    formData.append('in_stock', '1')
+    formData.append('stock', form.stock)
+
+    // if (form.stock === '0') {
+    //    alert('Stock tidak boleh 0')
+    //    return
+    // }
 
     if (form.image instanceof File) {
         formData.append('image', form.image)
@@ -208,23 +213,23 @@ export default function ProductPage() {
           className="w-full border rounded-lg p-2"
         />
 
-        <div className="grid grid-cols-2 gap-2">
+          <div>Rating</div>
           <input
             placeholder="Rating"
             value={form.rating}
             onChange={(e) => setForm({ ...form, rating: e.target.value })}
-            className="border rounded-lg p-2"
+            className="border rounded-lg p-2 -mt-2"
           />
 
+          <div>Reviews</div>
           <input
             placeholder="Reviews"
             value={form.reviews}
             onChange={(e) => setForm({ ...form, reviews: e.target.value })}
-            className="border rounded-lg p-2"
+            className="border rounded-lg p-2 -mt-2"
           />
-        </div>
 
-        <label className="flex items-center gap-2">
+        {/* <label className="flex items-center gap-2">
           <input
             type="checkbox"
             checked={form.in_stock}
@@ -233,13 +238,14 @@ export default function ProductPage() {
             }
           />
           Tersedia
-        </label>
+        </label> */}
 
+        <div>Stock</div>
         <input
             placeholder="Stock"
             value={form.stock}
             onChange={(e) => setForm({ ...form, stock: e.target.value })}
-            className="border rounded-lg px-2"
+            className="border rounded-lg p-2 -mt-2"
           />
 
         <div className="flex gap-2">
