@@ -133,6 +133,18 @@ function formatDate(dateStr: string) {
   })
 }
 
+const getImageUrl = (image?: string) => {
+    if (!image) return '/no-image.png'
+
+    // path lama (public folder)
+    if (image.startsWith('/')) {
+      return image
+    }
+
+    // path dari storage
+    return `/storage/${image}`
+  }
+
 export default function WorkshopsPage() {
   const { workshops } = usePage<PageProps>().props
 
@@ -624,7 +636,7 @@ export default function WorkshopsPage() {
                           gridView === "large" ? "aspect-[4/5]" : "aspect-square"
                         }`}>
                           <img
-                            src={workshop.image}
+                            src={getImageUrl(workshop.image)}
                             alt={workshop.name}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           />
@@ -752,7 +764,7 @@ export default function WorkshopsPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-secondary">
                   <img
-                    src={selectedWorkshop.image}
+                    src={getImageUrl(selectedWorkshop.image)}
                     alt={selectedWorkshop.name}
                     className="object-cover w-full h-full"
                   />

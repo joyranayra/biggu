@@ -47,6 +47,18 @@ function BigguMascot({ className = "w-24 h-24" }: { className?: string }) {
   )
 }
 
+const getImageUrl = (image?: string) => {
+    if (!image) return '/no-image.png'
+
+    // path lama (public folder)
+    if (image.startsWith('/')) {
+      return image
+    }
+
+    // path dari storage
+    return `/storage/${image}`
+  }
+
 // Format price in IDR
 function formatPrice(price: number) {
   return new Intl.NumberFormat('id-ID', {
@@ -297,7 +309,7 @@ export default function CartPage() {
                       <div className="col-span-3 sm:col-span-2">
                         <div className="w-full aspect-square rounded-lg overflow-hidden bg-secondary">
                           <img 
-                            src={item.image} 
+                            src={getImageUrl(item.image)}
                             alt={item.name}
                             className="w-full h-full object-cover"
                           />

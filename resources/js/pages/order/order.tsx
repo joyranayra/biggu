@@ -35,6 +35,18 @@ function BigguMascot({ className = "w-24 h-24" }: { className?: string }) {
   )
 }
 
+const getImageUrl = (image?: string) => {
+    if (!image) return '/no-image.png'
+
+    // path lama (public folder)
+    if (image.startsWith('/')) {
+      return image
+    }
+
+    // path dari storage
+    return `/storage/${image}`
+  }
+
 // Types
 type OrderStatus = 'pending' | 'paid' | 'processing' | 'shipped' | 'completed' | 'cancelled'
 
@@ -237,7 +249,7 @@ function OrderCard({ order, onViewDetail }: { order: Order; onViewDetail: (order
               <div className='flex flex-row gap-4'>
                   <img
                     className='object-fit w-18 h-18 rounded'
-                    src={order.items?.[0]?.image}
+                    src={getImageUrl(order.items?.[0]?.image)}
                     alt={order.items?.[0]?.name}
                   />
                   <div className='flex flex-col'>
@@ -376,7 +388,7 @@ function OrderDetailModal({ order, onClose }: { order: Order; onClose: () => voi
               {order.items.map((item) => (
                 <div key={item.id} className="flex gap-3 p-3 bg-muted rounded-lg">
                   <img
-                    src={item.image}
+                    src={getImageUrl(item.image)}
                     alt={item.name}
                     className="w-16 h-16 rounded object-cover"
                   />

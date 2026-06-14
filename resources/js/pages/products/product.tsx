@@ -719,7 +719,7 @@ export default function ProductsPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-secondary">
                   <img
-                    src={selectedProduct.image}
+                    src={getImageUrl(selectedProduct.image)}
                     alt={selectedProduct.name}
                     className="object-cover"
                   />
