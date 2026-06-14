@@ -1,0 +1,24 @@
+name: Deploy to Helipod
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Helipod
+        run: |
+          echo "Deploying to Helipod..."
+          # Helipod akan auto-deploy dari GitHub webhook
+          # Trigger deploy via Helipod API
+          curl -X POST "https://api.helipod.io/v1/deploy" \
+            -H "Authorization: Bearer ${{ secrets.HELIPOD_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"project": "${{ secrets.HELIPOD_PROJECT }}"}'
